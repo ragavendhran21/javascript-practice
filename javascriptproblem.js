@@ -445,3 +445,39 @@ console.log("Even numbers:", evenNumbers); // [2, 10, 8]
 // Find numbers at odd indices
 const oddIndices = customFilter(testArray, (_, index) => index % 2 !== 0);
 console.log("Elements at odd indices:", oddIndices); // [7, 9, 7, 10, 8]
+
+_______________________________________
+
+reduce()
+
+reduce is the method you can calla s an array ito combine multiple element in to single value 
+
+const words = ['hello', 'world', 'this', 'is', 'reduce'];
+ const sentence = words.reduce((acc, word) => acc+ ' ' + word, '');
+ console.log(sentence); // "hello world this is reduce"
+
+
+function sortArrayProblem(arr){
+  const sortedArray = arr.sort((a,b) => b-a);
+  const modifiedArray = sortedArray.map((value,index) => {
+    if (index === 0){
+      return value
+    } else if(index === 1){
+      return value + 1;
+    } else if (index === 2){
+      return value 
+    } else if(index === 3){
+      return value + value
+    } else {
+      return value
+    }
+  });
+  const sum = modifiedArray.reduce((total,current)=> current + total, 0);
+  return {
+    orignalArrY,
+    sum,
+    modifiedArray,
+    sortedArray
+  }
+}
+

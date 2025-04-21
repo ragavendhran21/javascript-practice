@@ -27,6 +27,7 @@ const SearchComponent = () => {
     }, 300);
 
     return () => {
+      
       clearTimeout(timerId);
     };
   }, [searchTerm]);
@@ -34,7 +35,6 @@ const SearchComponent = () => {
   useEffect(() => {
     if (debouncedSearchTerm) {
       setIsLoading(true);
-      
       // Simulate API call with setTimeout
       const timeoutId = setTimeout(() => {
         const filteredResults = sampleData.filter(item => 
