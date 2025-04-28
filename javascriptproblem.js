@@ -481,3 +481,10 @@ function sortArrayProblem(arr){
   }
 }
 
+_______________________________________
+shallowcopy, deepcopy
+
+const orginalcart = {
+  user:{id: 233, name: 'john'}
+}
+

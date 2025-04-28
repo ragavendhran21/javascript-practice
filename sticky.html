@@ -37,3 +37,235 @@ function largestArray(arr){
     }
     return largest
 }
+
+import React, { useState, useCallback, useMemo, memo, Suspense, lazy } from 'react';
+import { useVirtual } from 'react-virtual';
+
+// 1. Code splitting with lazy loading
+const ProductDetail = lazy(() => import('./ProductDetail'));
+const UserProfile = lazy(() => import('./UserProfile'));
+const Analytics = lazy(() => import('./Analytics'));
+
+// 2. Memoization with memo
+const ExpensiveComponent = memo(function ExpensiveComponent({ data }) {
+  console.log('Rendering ExpensiveComponent');
+  
+  // Expensive calculation
+  const processedData = useMemo(() => {
+    console.log('Processing data...');
+    return data.map(item => {
+      // Simulate expensive transformation
+      return {
+        ...item,
+        score: calculateComplexScore(item)
+      };
+    });
+  }, [data]); // Only recalculate when data changes
+  
+  return (
+    <div className="results">
+      {processedData.map(item => (
+        <div key={item.id} className="result-item">
+          <h3>{item.name}</h3>
+          <p>Score: {item.score}</p>
+        </div>
+      ))}
+    </div>
+  );
+});
+
+// 3. List virtualization for performance
+function VirtualizedList({ items }) {
+  const parentRef = useRef();
+  
+  // Set up virtualization
+  const rowVirtualizer = useVirtual({
+    size: items.length,
+    parentRef,
+    estimateSize: useCallback(() => 50, []), // Estimated row height
+    overscan: 5 // Number of items to render outside of the visible window
+  });
+  
+  return (
+    <div 
+      ref={parentRef}
+      className="virtual-list"
+      style={{ height: '400px', overflow: 'auto' }}
+    >
+      <div
+        style={{
+          height: `${rowVirtualizer.totalSize}px`,
+          width: '100%',
+          position: 'relative'
+        }}
+      >
+        {rowVirtualizer.virtualItems.map(virtualRow => (
+          <div
+            key={virtualRow.index}
+            className="virtual-row"
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: `${virtualRow.size}px`,
+              transform: `translateY(${virtualRow.start}px)`
+            }}
+          >
+            <ListItem item={items[virtualRow.index]} />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// 4. Event handler memoization
+function SearchForm({ onSearch }) {
+  const [query, setQuery] = useState('');
+  
+  // Memoize event handler to prevent unnecessary re-renders
+  const handleSubmit = useCallback((e) => {
+    e.preventDefault();
+    onSearch(query);
+  }, [query, onSearch]);
+  
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        placeholder="Search..."
+      />
+      <button type="submit">Search</button>
+    </form>
+  );
+}
+
+// 5. Avoiding unnecessary renders with proper state structure
+function ProductDashboard() {
+  // Separate states to avoid unnecessary re-renders
+  const [products, setProducts] = useState([]);
+  const [selectedProductId, setSelectedProductId] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  
+  // Memoized derived state
+  const selectedProduct = useMemo(() => {
+    return products.find(p => p.id === selectedProductId) || null;
+  }, [products, selectedProductId]);
+  
+  // Memoized filtered products
+  const filteredProducts = useMemo(() => {
+    if (!searchQuery.trim()) return products;
+    
+    const lowerQuery = searchQuery.toLowerCase();
+    return products.filter(product => 
+      product.name.toLowerCase().includes(lowerQuery) ||
+      product.description.toLowerCase().includes(lowerQuery)
+    );
+  }, [products, searchQuery]);
+  
+  // Memoized callback
+  const handleSearch = useCallback((query) => {
+    setSearchQuery(query);
+  }, []);
+  
+  // Load products
+  useEffect(() => {
+    async function loadProducts() {
+      setIsLoading(true);
+      try {
+        const data = await fetchProducts();
+        setProducts(data);
+      } catch (error) {
+        console.error('Failed to load products:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    
+    loadProducts();
+  }, []);
+  
+  return (
+    <div className="dashboard">
+      <SearchForm onSearch={handleSearch} />
+      
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <div className="content">
+          <ProductList 
+            products={filteredProducts}
+            selectedId={selectedProductId}
+            onSelectProduct={setSelectedProductId}
+          />
+          
+          <Suspense fallback={<LoadingSpinner />}>
+            {selectedProduct && (
+              <ProductDetail product={selectedProduct} />
+            )}
+          </Suspense>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// 6. Optimized list component
+const ProductList = memo(function ProductList({ products, selectedId, onSelectProduct }) {
+  return (
+    <div className="product-list">
+      {products.length === 0 ? (
+        <p>No products found</p>
+      ) : (
+        // Use virtualization for long lists
+        products.length > 100 ? (
+          <VirtualizedList items={products} />
+        ) : (
+          products.map(product => (
+            <ProductListItem
+              key={product.id}
+              product={product}
+              isSelected={product.id === selectedId}
+              onClick={() => onSelectProduct(product.id)}
+            />
+          ))
+        )
+      )}
+    </div>
+  );
+});
+
+// 7. Optimized list item
+const ProductListItem = memo(function ProductListItem({ product, isSelected, onClick }) {
+  return (
+    <div 
+      className={`product-item ${isSelected ? 'selected' : ''}`}
+      onClick={onClick}
+    >
+      <h3>{product.name}</h3>
+      <p>{product.price}</p>
+    </div>
+  );
+});
+
+___________________
+
+<!-- const [searchItems, { data, loading }] = useLazyQuery(SEARCH_ITEMS);
+const [query, setQuery] = useState('');
+const debouncedQuery = useDebounce(query, 300);
+
+useEffect(() => {
+  if (debouncedQuery) {
+    searchItems({ variables: { query: debouncedQuery } });
+  }
+}, [debouncedQuery, searchItems]);
+
+const handleChange = useCallback((e) => {
+  setQuery(e.target.value);
+}, []); -->
+
+c

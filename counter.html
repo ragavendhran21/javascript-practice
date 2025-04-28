@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter Implementation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+        .counter-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+            width: 300px;
+        }
+        .counter-display {
+            font-size: 48px;
+            font-weight: bold;
+            margin: 20px 0;
+            color: #333;
+        }
+        .counter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+        .increment {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .decrement {
+            background-color: #f44336;
+            color: white;
+        }
+        .reset {
+            background-color: #2196F3;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="counter-container">
+        <h2>Counter</h2>
+        <div class="counter-display" id="count">0</div>
+        <div class="counter-buttons">
+            <button class="decrement" id="decrementBtn">Decrease</button>
+            <button class="reset" id="resetBtn">Reset</button>
+            <button class="increment" id="incrementBtn">Increase</button>
+        </div>
+    </div>
+
+    <script>
+        // Your counter factory function
+        function makeCounter(initialValue = 0) {
+            let count = initialValue;
+            return {
+                increment: function(){
+                    count++;
+                    return count;
+                },
+                decrement: function(){
+                    count--;
+                    return count;
+                },
+                reset: function(){
+                    count = initialValue;
+                    return count;
+                },
+                getValue: function(){
+                    return count;
+                }
+            };
+        }
+
+        // Create a counter instance
+        const counter = makeCounter(0);
+        
+        // Get DOM elements
+        const countDisplay = document.getElementById('count');
+        const incrementBtn = document.getElementById('incrementBtn');
+        const decrementBtn = document.getElementById('decrementBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        
+        // Update display function
+        function updateDisplay(value) {
+            countDisplay.textContent = value;
+        }
+        
+        // Event listeners using event delegation for efficiency
+        document.addEventListener('click', function(event) {
+            let newValue;
+            
+            if (event.target === incrementBtn) {
+                newValue = counter.increment();
+                updateDisplay(newValue);
+            } else if (event.target === decrementBtn) {
+                newValue = counter.decrement();
+                updateDisplay(newValue);
+            } else if (event.target === resetBtn) {
+                newValue = counter.reset();
+                updateDisplay(newValue);
+            }
+        });
+        
+        // Initialize display
+        updateDisplay(counter.getValue());
+    </script>
+</body>
+</html>

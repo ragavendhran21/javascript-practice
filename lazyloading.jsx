@@ -1,6 +1,6 @@
 
 
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 const Home = lazy(() => import("./Home"));
@@ -31,3 +31,37 @@ Key Takeaways for Interview
 ✅ Used for code splitting, reducing bundle size.
 ✅ Improves performance in large applications, especially with routing.
 ✅ Can be combined with dynamic imports (import()) for further optimizations.
+
+
+
+const debounce = (value, delay) => {
+  const [debounce, setDebounce] = useState(value);
+   
+
+    useEffect(()=> {
+      const handler = setTimeout(() => {
+        setDebounce(value)
+      },delay)
+      return () => clearTimeout(handler)
+    },[value,delay])
+
+    return debounceValue;
+
+}
+
+const search = ()=> {
+const [searchTerm,setSearchTerm] = useState('');
+const debounceInput = useDebounce(input, 500)
+
+useEffect(()=>{
+  if(!debounceInput) {
+    setresult ([])
+  }
+})
+
+ 
+  return (
+    <input type="text" placeholder="search" onChange={(e)=> setiput(e.target,value)}/>
+
+  )
+}
