@@ -341,3 +341,49 @@ console.log(array2); // Output: [1, 4, 21, 30, 100000]
 
 array2.sort((a, b) => b - a); // Descending order
 console.log(array2); // Output: [100000, 30, 21, 4, 1]
+
+//sum of array using reduce
+
+const numberss = [1, 2, 3, 4, 5];
+const sum = numberss.reduce((value1,value2)=> {
+  return value1 + value2;
+},0);
+
+console.log(sum);
+if they want to do sum the number in array means first in const declare array and declare const sum = numberss.reduce((value , value2) =>{
+  return value1 + value2
+})
+_______________________________________________________________________
+function counter(){
+  let count = 0;
+  return function(){
+    count++;
+    return count;
+  }
+}
+
+const counter = createCounter();
+console.log(counter()); // 1
+console.log(counter()); // 2
+console.log(counter());
+_______________________________________
+// implementing the debounce functionlity
+
+function debounce(func, delay){
+  let timeout;
+  return function(...args){
+    clearTimeout(timeout);
+    setTimeout(()=> {
+      func.apply(this, args);
+    }, delay)
+  }
+
+}
+
+const handleSearch = debounce((text) => {
+  console.log(text)
+})
+
+handleSearch('A');
+handleSearch("ab");
+handleSearch("ABC");

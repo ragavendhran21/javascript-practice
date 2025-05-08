@@ -1,0 +1,232 @@
+Awesome! Here's a 4-week personalized DSA learning plan designed for you, Ragavendhran. It gradually builds your logic, problem-solving, and confidence for interview-level questions.
+
+📅 Week 1: Foundation – Arrays, Strings, Recursion
+Goal: Build basic problem-solving skills, understand patterns like two pointers and recursion.
+
+🗓️ Day 1: Arrays - Basics & Two Pointers
+Learn: Array traversal, Two pointers
+
+Problems:
+
+Two Sum (Easy)
+
+Remove Duplicates from Sorted Array (Easy)
+
+🗓️ Day 2: Sliding Window
+Learn: Fixed and variable size sliding window
+
+Problems:
+
+Maximum Sum Subarray of Size K (Easy)
+
+Longest Substring Without Repeating Characters (Medium)
+
+🗓️ Day 3: Prefix Sum & Hashing
+Learn: Efficient subarray queries
+
+Problems:
+
+Subarray Sum Equals K (Medium)
+
+Contiguous Array (Medium)
+
+🗓️ Day 4: Recursion Basics
+Learn: Base & recursive case, dry runs
+
+Problems:
+
+Factorial using recursion (Easy)
+
+Fibonacci using recursion (Easy)
+
+🗓️ Day 5: Backtracking
+Learn: Undo step, use recursion tree
+
+Problems:
+
+Subsets (Medium)
+
+Permutations (Medium)
+
+🗓️ Day 6: Practice Day
+Mixed problems:
+
+Best Time to Buy and Sell Stock (Easy)
+
+Product of Array Except Self (Medium)
+
+Combination Sum (Medium)
+
+🗓️ Day 7: Review & Revisit
+Re-solve any 2 problems you struggled with
+
+Watch short YouTube DSA explanations (NeetCode, CodeWithHarry)
+
+📅 Week 2: Linked List, Stack, Queue, Sorting
+Goal: Learn pointer logic, memory management, and basic sorting/searching
+
+🗓️ Day 8: Linked List Basics
+Learn: Create, traverse, reverse
+
+Problems:
+
+Reverse Linked List (Easy)
+
+Merge Two Sorted Lists (Easy)
+
+🗓️ Day 9: Fast & Slow Pointer
+Learn: Floyd’s Cycle Detection
+
+Problems:
+
+Linked List Cycle (Easy)
+
+Middle of the Linked List (Easy)
+
+🗓️ Day 10: Stack Basics
+Learn: Stack usage in expressions
+
+Problems:
+
+Valid Parentheses (Easy)
+
+Min Stack (Medium)
+
+🗓️ Day 11: Queue & Monotonic Stack
+Problems:
+
+Implement Queue using Stack (Easy)
+
+Daily Temperatures (Medium)
+
+🗓️ Day 12: Sorting Techniques
+Learn: Merge sort, quick sort concepts
+
+Problems:
+
+Merge Intervals (Medium)
+
+Kth Largest Element (Medium)
+
+🗓️ Day 13: Binary Search Patterns
+Problems:
+
+Binary Search (Easy)
+
+Search in Rotated Sorted Array (Medium)
+
+🗓️ Day 14: Review & Mock Interview
+Pick 3 random questions from the week and solve them in a timed session
+
+📅 Week 3: Trees & Graphs
+Goal: Get comfortable with recursive DFS, BFS, and graph traversal
+
+🗓️ Day 15: Binary Tree Basics
+Learn: DFS Traversals
+
+Problems:
+
+Inorder Traversal (Easy)
+
+Max Depth of Binary Tree (Easy)
+
+🗓️ Day 16: Binary Tree Problems
+Problems:
+
+Symmetric Tree (Easy)
+
+Path Sum (Easy)
+
+🗓️ Day 17: Binary Search Tree (BST)
+Learn: Properties, insert/delete/search
+
+Problems:
+
+Validate BST (Medium)
+
+Lowest Common Ancestor (Medium)
+
+🗓️ Day 18: Graph BFS/DFS
+Problems:
+
+Number of Islands (Medium)
+
+Clone Graph (Medium)
+
+🗓️ Day 19: Topological Sort / Cycle Detection
+Problems:
+
+Course Schedule (Medium)
+
+Detect Cycle in Undirected Graph (Medium)
+
+🗓️ Day 20: Union Find / Disjoint Set
+Problems:
+
+Number of Connected Components (Medium)
+
+Redundant Connection (Medium)
+
+🗓️ Day 21: Review Day
+Try a mock coding challenge or revisit 3 questions you found difficult
+
+📅 Week 4: Dynamic Programming & Greedy
+Goal: Learn problem breakdown, memoization/tabulation, and greedy strategy
+
+🗓️ Day 22: DP Basics
+Learn: Recursion → Memoization → Tabulation
+
+Problems:
+
+Climbing Stairs (Easy)
+
+Fibonacci with Memoization (Easy)
+
+🗓️ Day 23: DP Medium
+Problems:
+
+House Robber (Medium)
+
+Longest Palindromic Substring (Medium)
+
+🗓️ Day 24: Subsequence-Based DP
+Problems:
+
+Longest Common Subsequence (Medium)
+
+Edit Distance (Hard)
+
+🗓️ Day 25: 0/1 Knapsack
+Understand: Include/Exclude logic
+
+Problem:
+
+Classic 0/1 Knapsack (Medium/Hard)
+
+🗓️ Day 26: Greedy Algorithms
+Learn: Greedy vs DP
+
+Problems:
+
+Jump Game (Medium)
+
+Gas Station (Medium)
+
+🗓️ Day 27: Trie & Heap
+Problems:
+
+Implement Trie (Medium)
+
+Top K Frequent Elements (Medium)
+
+🗓️ Day 28: Final Mock & Reflection
+Solve 3 random problems from different topics
+
+Reflect: Where are you strongest/weakest?
+
+🔁 Post-Plan Advice
+Do a weekly "revision sprint" of old problems
+
+Push yourself to solve 1–2 hard problems per week
+
+Try mock interviews on platforms like InterviewBit or Pramp
