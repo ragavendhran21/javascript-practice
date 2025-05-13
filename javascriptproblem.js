@@ -165,3 +165,125 @@ const orginalcart = {
   user:{id: 233, name: 'john'}
 }
 
+
+_________________________________-----
+
+import React, { useEffect, useState, useMemo, useCallback } from "react";
+
+const Component = () => {
+  const [products, setProducts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  
+  // Memoize the fetchData function with useCallback
+  const fetchData = useCallback(async () => {
+    try {
+      const response = await fetch("https://dummyjson.com/products");
+      const result = await response.json();
+      setProducts(result.products);
+    } catch (error) {
+      console.log("Error fetching data", error);
+    }
+  }, []);
+  
+  // Fetch data only once when component mounts
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+  
+  // Memoize the filtered data to avoid unnecessary calculations
+  const filteredData = useMemo(() => {
+    if (searchTerm === "") {
+      return products;
+    }
+    
+    const lowerSearch = searchTerm.toLowerCase();
+    return products.filter((item) =>
+      item.title.toLowerCase().includes(lowerSearch)
+    );
+  }, [searchTerm, products]);
+  
+  // Memoize the input change handler
+  const handleSearchChange = useCallback((e) => {
+    setSearchTerm(e.target.value);
+  }, []);
+  
+  return (
+    <div>
+      <input
+        type="text"
+        placeholder="Search products"
+        value={searchTerm}
+        onChange={handleSearchChange}
+      />
+      {filteredData.map((item) => (
+        <div key={item.id}>
+          <h3>{item.title}</h3>
+          <p>{item.description}</p>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default Component;
+_______________________________________
+
+function findMethod (){
+  let arr = [1, 2, 3, 4, 5];
+  let data = arr.find((item)=> item > 3)
+}
+
+______________________________________________
+
+import React, { useEffect, useState, useMemo } from "react";
+
+const Component = () => {
+  const [products, setProducts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  
+  // Fetch data once on component mount
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("https://dummyjson.com/products");
+        const result = await response.json();
+        setProducts(result.products);
+      } catch (error) {
+        console.log("Error fetching data", error);
+      }
+    };
+    
+    fetchData();
+  }, []);
+  
+  // Memoize the filtered data to avoid recalculation on every render
+  const filteredData = useMemo(() => {
+    if (searchTerm === "") {
+      return products;
+    }
+    
+    const lowerSearch = searchTerm.toLowerCase();
+    return products.filter((item) =>
+      item.title.toLowerCase().includes(lowerSearch)
+    );
+  }, [searchTerm, products]);
+  
+  return (
+    <div>
+      <input
+        type="text"
+        placeholder="Search products"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+      {filteredData.map((item) => (
+        <div key={item.id}>
+          <h3>{item.title}</h3>
+          <p>{item.description}</p>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default Component;

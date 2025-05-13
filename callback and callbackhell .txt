@@ -1,0 +1,26 @@
+11. Callback with Example
+What it is:
+A function passed as an argument to another function, and called later.
+function greet(name, callback) {
+  callback(`Hello ${name}`);
+}
+
+greet("Ragav", (message) => {
+  console.log(message); // Hello Ragav
+});
+
+function greet(name,callback){
+  callback(`hello {name}`);
+}
+
+greet
+
+
+
+useCallback is a React Hook that returns a memoized version of a callback function. It helps optimize performance by preventing unnecessary re-creation of functions on every render.
+
+Key points:
+
+It takes two arguments: a function and a dependency array.
+The memoized function only changes if one of the dependencies changes.
+This is useful when passing callbacks to child components or hooks that rely on referential equality, preventing unnecessary re-renders or re-executions

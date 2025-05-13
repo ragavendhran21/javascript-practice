@@ -230,3 +230,6 @@ Do a weekly "revision sprint" of old problems
 Push yourself to solve 1–2 hard problems per week
 
 Try mock interviews on platforms like InterviewBit or Pramp
+
+
+https://vercel.com
