@@ -387,3 +387,27 @@ const handleSearch = debounce((text) => {
 handleSearch('A');
 handleSearch("ab");
 handleSearch("ABC");
+_______________________________________________________________________
+
+function removeDuplicates(arr) {
+    // Using Set for O(n) time complexity
+    return [...new Set(arr)];
+    // return [...new setInterval(arr)]
+  }
+ 
+  // Alternative approach
+  function removeDuplicatesAlt(arr) {
+    const seen = {};
+    return arr.filter(item => {
+      // If we haven't seen this item before, mark it and keep it
+      if (!seen[item]) {
+        seen[item] = true;
+        return true;
+      }
+      return false;
+    });
+  }
+ 
+  // Example
+  const array = [1, 2, 2, 3, 4, 4, 5];
+  console.log(removeDuplicates(array)); 

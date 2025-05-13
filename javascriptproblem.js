@@ -287,3 +287,11 @@ const Component = () => {
 };
 
 export default Component;
+______________________________________________
+const numbers = [10, 20, 30];
+
+const total = numbers.reduce((acc, curr) => {
+  return acc + curr;
+}, 0);
+
+console.log(total); // 👉 60
