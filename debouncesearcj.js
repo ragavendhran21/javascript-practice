@@ -119,6 +119,17 @@ function debounce(func, delay) {
   };
 }
 
+const debounce = (func, delay) => {
+  let timeout;
+  return (...args) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      func.apply(this, args);
+    }, delay);
+  };
+};
+
+
 const handleSearch = debounce((text) => {
   console.log("Search for:", text);
 }, 300);
